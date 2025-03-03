@@ -1,6 +1,15 @@
-replicaCount: 3
+replicaCount: 1
 
 image:
-  repository: nginx
-  tag: latest
+  repository: sekhar1913/my-app
+  tag: "18"
   pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8081
+
+container:
+  name: my-app
+  containerPort: 8080
