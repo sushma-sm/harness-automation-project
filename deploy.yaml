@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: "shaikmustafa/mygame"  # Updated to use sekhar1913/my-app
+          image: "nasi101/tetris" 
           ports:
             - containerPort: 8080
 ---
