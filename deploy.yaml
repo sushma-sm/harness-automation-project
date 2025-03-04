@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: "shaikmustafa/cycle"  # Updated to use sekhar1913/my-app
+          image: "shaikmustafa/mygame"  # Updated to use sekhar1913/my-app
           ports:
             - containerPort: 8080
 ---
