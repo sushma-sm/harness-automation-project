@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     app: my-app
-    harness.io/color: blue  # 🛑 Must have this label for Blue-Green
+    harness.io/color: blue  
   ports:
     - protocol: TCP
       port: 80
