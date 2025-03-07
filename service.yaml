@@ -1,14 +1,31 @@
+# Primary Service (Traffic Routed Here)
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-service
+  name: my-app-service  # This service routes traffic
   annotations:
-    harness.io/primary-service: "true"  # Ensures Harness swaps traffic
+    harness.io/primary-service: "true"  # Harness swaps traffic here
 spec:
   selector:
-    app: my-app
+    app: my-app  # Selects active deployment (Blue or Green)
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
   type: LoadBalancer
+---
+# Stage Service (Used for Deployment)
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-stage-service  # Harness stages traffic here before swap
+  annotations:
+    harness.io/stage-service: "true"  # This will be swapped
+spec:
+  selector:
+    app: my-app  # Selects the inactive deployment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP  # Internal service, no external traffic
