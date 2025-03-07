@@ -1,15 +1,49 @@
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: my-app-service
-  annotations:
-    harness.io/primary-service: "true"  # Ensures Harness swaps traffic
-spec:
-  selector:
+  name: my-app-blue
+  labels:
     app: my-app
-    harness.io/color: blue  # This will be swapped to "green" automatically
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: LoadBalancer
+    harness.io/color: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+      harness.io/color: blue
+  template:
+    metadata:
+      labels:
+        app: my-app
+        harness.io/color: blue
+    spec:
+      containers:
+        - name: my-app
+          image: "nasi101/tetris:v1"  # Check if this image exists
+          ports:
+            - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-green
+  labels:
+    app: my-app
+    harness.io/color: green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+      harness.io/color: green
+  template:
+    metadata:
+      labels:
+        app: my-app
+        harness.io/color: green
+    spec:
+      containers:
+        - name: my-app
+          image: "nasi101/tetris:v2"  # Check if this image exists
+          ports:
+            - containerPort: 8080
