@@ -2,9 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-app-service
+  annotations:
+    harness.io/primary-service: "true"  # Ensures Harness swaps traffic
 spec:
   selector:
-    app: my-app  # No need to specify "blue" or "green" here
+    app: my-app
+    harness.io/color: blue  # This will be swapped to "green" automatically
   ports:
     - protocol: TCP
       port: 80
