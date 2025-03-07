@@ -1,6 +1,6 @@
 resource "google_container_cluster" "primary" {
   name     = var.cluster_name
-  location = var.region  # This is still the region, like 'us-central1'
+  location = var.region
 
   deletion_protection = false
 
@@ -8,8 +8,7 @@ resource "google_container_cluster" "primary" {
 
   node_config {
     machine_type = var.node_machine_type
-    disk_size_gb = 30
-    # Adding zone here for node pool creation
+    disk_size_gb = 70
   }
 
   remove_default_node_pool = false
