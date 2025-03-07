@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: "nasi101/tetris:v1"  # Blue Version
+          image: "nasi101/tetris"  #  Updated image
           ports:
             - containerPort: 8080
 ---
@@ -30,8 +30,6 @@ metadata:
   labels:
     app: my-app
     harness.io/color: green
-  annotations:
-    harness.io/direct-apply: "true"  # Mark Green as Direct Apply
 spec:
   replicas: 3
   selector:
@@ -46,6 +44,6 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: "nasi101/tetris:v2"  # Green Version
+          image: "nasi101/tetrisv2"  #  Updated image
           ports:
             - containerPort: 8080
