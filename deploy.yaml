@@ -30,6 +30,8 @@ metadata:
   labels:
     app: my-app
     harness.io/color: green
+  annotations:
+    harness.io/direct-apply: "true"  # Mark Green as Direct Apply
 spec:
   replicas: 3
   selector:
