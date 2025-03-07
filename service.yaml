@@ -4,8 +4,7 @@ metadata:
   name: my-app-service
 spec:
   selector:
-    app: my-app
-    harness.io/color: blue  # Change to "green" to switch traffic
+    app: my-app  # No need to specify "blue" or "green" here
   ports:
     - protocol: TCP
       port: 80
