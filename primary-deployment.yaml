@@ -5,6 +5,8 @@ metadata:
   labels:
     app: my-nginx
     version: stable
+  annotations:
+    harness.io/direct-apply: "true"  # Important for Harness Canary Deployment
 spec:
   replicas: 3  # Primary replicas
   selector:
