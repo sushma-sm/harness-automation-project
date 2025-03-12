@@ -4,7 +4,7 @@ metadata:
   name: my-nginx-svc
 spec:
   selector:
-    app: my-nginx  # Common label for both canary and stable
+    app: my-nginx  # Routes to all pods with this label
   ports:
     - protocol: TCP
       port: 80
