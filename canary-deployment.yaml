@@ -6,7 +6,7 @@ metadata:
     app: my-nginx
     version: stable
 spec:
-  replicas: 3  # Number of stable pods
+  replicas: 3
   selector:
     matchLabels:
       app: my-nginx
@@ -19,18 +19,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.19  # Stable version image
+        image: nginx:1.19
         ports:
         - containerPort: 80
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 15
-          periodSeconds: 20
