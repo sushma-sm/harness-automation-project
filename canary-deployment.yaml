@@ -6,9 +6,9 @@ metadata:
     app: my-nginx
     version: canary
   annotations:
-    harness.io/direct-apply: "true"  # Important for Harness Canary Deployment
+    harness.io/direct-apply: "true"  # Ensures Harness applies this directly
 spec:
-  replicas: 2  # Canary replicas (smaller number)
+  replicas: 1  # Start with 1 replica for Canary (smaller number)
   selector:
     matchLabels:
       app: my-nginx
@@ -24,3 +24,15 @@ spec:
         image: nginx:1.20  # Canary version
         ports:
         - containerPort: 80
+        readinessProbe:  # Add readiness probe for better Canary control
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:  # Add liveness probe for better Canary control
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
