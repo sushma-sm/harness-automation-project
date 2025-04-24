@@ -1,7 +1,7 @@
 variable "project_id" {
   description = "The GCP project ID"
   type        = string
-  default     = "devops-practice-sm"  
+  default     = "teak-surge-455704-t3"  
 }
 
 variable "region" {
